@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.tyrion.plugin.umengupdate" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>UmengUpdatePlugin</name>
+	<preference name="APP_KEY" />
+	<preference name="CHANNEL_ID" />
+	<js-module name="UmengUpdatePlugin" src="www/UmengUpdatePlugin.js">
+		<clobbers target="cordova.plugins.UmengUpdatePlugin" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="UmengUpdatePlugin">
+				<param name="android-package" value="com.tyrion.plugin.umengupdate.UmengUpdatePlugin" />
+			</feature>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+			<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+        </config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service
+			    android:name="com.umeng.update.net.DownloadingService"
+			    android:process=":DownloadingService" >
+			</service>
+			<activity 
+			    android:name="com.umeng.update.UpdateDialogActivity"
+			    android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+			</activity>
+            <meta-data android:value="$APP_KEY" android:name="UMENG_APPKEY"></meta-data>
+			<meta-data android:value="$CHANNEL_ID" android:name="UMENG_CHANNEL"/>
+        </config-file>
+
+		<source-file src="src/android/UmengUpdatePlugin.java" target-dir="src/com/tyrion/plugin/umengupdate" />
+		<source-file src="src/android/umeng-update-v2.6.0.1.jar" target-dir="libs" />
+
+		<source-file src="src/android/res/drawable/tb_munion_icon.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/tb_munion_item_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_common_gradient_green.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_common_gradient_orange.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_common_gradient_red.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_cancel_bg_focused.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_cancel_bg_normal.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_cancel_bg_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_cancel_bg_tap.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_check_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_close_bg_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_ok_bg_focused.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_ok_bg_normal.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_ok_bg_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_button_ok_bg_tap.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_dialog_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_title_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/umeng_update_wifi_disable.png" target-dir="res/drawable" />
+
+
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_btn_check_off_focused_holo_light.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_btn_check_off_holo_light.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_btn_check_off_pressed_holo_light.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_btn_check_on_focused_holo_light.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_btn_check_on_holo_light.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_btn_check_on_pressed_holo_light.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_close_bg_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/umeng_update_close_bg_tap.png" target-dir="res/drawable-hdpi" />
+
+
+		<source-file src="src/android/res/layout/tb_munion_aditem.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/umeng_common_download_notification.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/umeng_update_dialog.xml" target-dir="res/layout" />
+
+
+		<source-file src="src/android/res/layout-v9/umeng_common_download_notification.xml" target-dir="res/layout-v9" />
+
+
+		<source-file src="src/android/res/values/tb_munion_strings.xml" target-dir="res/values" />
+		<source-file src="src/android/res/values/umeng_common_strings.xml" target-dir="res/values" />
+		<source-file src="src/android/res/values/umeng_update_string.xml" target-dir="res/values" />
+
+
+		<source-file src="src/android/res/values-zh/umeng_common_strings.xml" target-dir="res/values-zh" />
+		<source-file src="src/android/res/values-zh/umeng_update_string.xml" target-dir="res/values-zh" />
+
+	</platform>
+</plugin>
